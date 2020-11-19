@@ -1,4 +1,6 @@
-import { AutoIncrement, Column, DataType, IsUUID, Model, PrimaryKey, Table } from "sequelize-typescript";
+import { AutoIncrement, Column, DataType, ForeignKey, HasMany, IsUUID, Model, PrimaryKey, Table } from "sequelize-typescript";
+import { DayOfZodiac } from "./dayOfZodiac";
+import { Zodiacs } from "./zodiac";
 
 @Table({tableName:'month_of_zodiac',timestamps:false})
 export class MonthOfZodiac extends Model<MonthOfZodiac> {
@@ -7,8 +9,9 @@ export class MonthOfZodiac extends Model<MonthOfZodiac> {
     @AutoIncrement
     @Column({
         field:'id',
+        defaultValue:DataType.INTEGER
     })
-    id!:string;
+    id!:number;
 
     @Column({
         allowNull:false,
@@ -16,4 +19,12 @@ export class MonthOfZodiac extends Model<MonthOfZodiac> {
         type:DataType.TEXT
     })
     content:string;
+
+    @ForeignKey(() => Zodiacs)
+    @Column({ field: 'zodiac_id', allowNull: true, type: DataType.INTEGER })
+    zodiacId!:number
+    
+    @HasMany(()=>DayOfZodiac,'monthZodiacId')
+    dayOfZodiacs :DayOfZodiac[];
+    
 }

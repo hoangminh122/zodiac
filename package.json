@@ -28,10 +28,11 @@
     "@nestjs/swagger": "^4.7.2",
     "dotenv": "^8.2.0",
     "fastify-swagger": "^3.5.0",
+    "pg": "^8.5.1",
     "reflect-metadata": "^0.1.13",
     "rimraf": "^3.0.2",
     "rxjs": "^6.6.3",
-    "sequelize": "^6.3.5",
+    "sequelize": "5.21.6",
     "sequelize-typescript": "^1.1.0",
     "swagger-ui-express": "^4.1.4"
   },

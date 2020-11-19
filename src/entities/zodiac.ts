@@ -1,7 +1,11 @@
-import { Column, DataType, IsUUID, Model, PrimaryKey, Table } from "sequelize-typescript";
+import { Column, DataType, HasMany, IsUUID, Model, PrimaryKey, Table } from "sequelize-typescript";
+import { DayOfZodiac } from "./dayOfZodiac";
+import { MonthOfZodiac } from "./monthOfZodiac";
 
 
-@Table({tableName:'zodiacs'})
+@Table({
+    tableName:'zodiacs'
+})
 export class Zodiacs extends Model<Zodiacs> {
 
     @PrimaryKey
@@ -9,7 +13,7 @@ export class Zodiacs extends Model<Zodiacs> {
         type:DataType.INTEGER,
         autoIncrement:true,
     })
-    id!:string;
+    id!:number;
 
     @Column({
         allowNull:false,
@@ -22,5 +26,9 @@ export class Zodiacs extends Model<Zodiacs> {
         type:DataType.TEXT
     })
     content:string;
+
+    @HasMany(()=>MonthOfZodiac,'zodiacId')
+    monthOfZodiacs :MonthOfZodiac[];
+
 
 }

@@ -1,5 +1,5 @@
-import { AutoIncrement, Column, DataType, ForeignKey, IsUUID, Model, PrimaryKey, Table } from "sequelize-typescript";
-import { MonthOfZodiac } from "./monthOfZodiac";
+import { AutoIncrement, Column, CreatedAt, DataType, ForeignKey, IsUUID, Model, PrimaryKey, Sequelize, Table, UpdatedAt } from "sequelize-typescript";
+import { MonthOfZodiac } from "./MonthOfZodiacs";
 
 @Table({tableName:'day_of_zodiac',timestamps:false})
 export class DayOfZodiac extends Model<DayOfZodiac> {
@@ -22,5 +22,25 @@ export class DayOfZodiac extends Model<DayOfZodiac> {
 
     @ForeignKey(() => MonthOfZodiac)
     @Column({ field: 'monthZodiac_id', allowNull: true, type: DataType.INTEGER })
-    monthZodiacId!:number
+    monthZodiacId!:number;
+
+    @CreatedAt
+    @Column({
+        field:'create_date',
+        allowNull:false,
+        type:DataType.DATE,
+        defaultValue:Sequelize.fn('now')
+        
+    })
+    createdAt: Date;
+
+    @UpdatedAt
+    @Column({
+        field:'update_date',
+        allowNull:false,
+        type:DataType.DATE,
+        defaultValue:Sequelize.fn('now')
+        
+    })
+    updatedAt: Date;
 }

@@ -1,6 +1,6 @@
 import { Sequelize } from "sequelize-typescript";
-import { DayOfZodiac } from "src/entities/dayOfZodiac";
-import { MonthOfZodiac } from "src/entities/monthOfZodiac";
+import { DayOfZodiac } from "src/entities/DayOfZodiac";
+import { MonthOfZodiac } from "src/entities/MonthOfZodiacs";
 import { Zodiacs } from "src/entities/zodiac";
 import { databaseConfig } from "src/shared/config/interfaces/database";
 
@@ -24,7 +24,7 @@ export const databaseProvider = {
 
     const sequelize = new Sequelize({...config });
     sequelize.addModels([Zodiacs,MonthOfZodiac,DayOfZodiac]);
-    await sequelize.sync({ force: false });
+    await sequelize.sync({ force: true });
     return sequelize;
   },
 };

@@ -1,6 +1,7 @@
-import { Column, DataType, HasMany, IsUUID, Model, PrimaryKey, Table } from "sequelize-typescript";
-import { DayOfZodiac } from "./dayOfZodiac";
-import { MonthOfZodiac } from "./monthOfZodiac";
+import { Column, CreatedAt, DataType, HasMany, IsUUID, Model, PrimaryKey, Table, UpdatedAt } from "sequelize-typescript";
+import { Sequelize } from "sequelize";
+import { DayOfZodiac } from "./DayOfZodiac";
+import { MonthOfZodiac } from "./MonthOfZodiacs";
 
 
 @Table({
@@ -22,6 +23,12 @@ export class Zodiacs extends Model<Zodiacs> {
     name:string;
 
     @Column({
+        type:DataType.INTEGER,
+        defaultValue:1
+    })
+    gender:number;
+
+    @Column({
         allowNull:false,
         type:DataType.TEXT
     })
@@ -29,6 +36,26 @@ export class Zodiacs extends Model<Zodiacs> {
 
     @HasMany(()=>MonthOfZodiac,'zodiacId')
     monthOfZodiacs :MonthOfZodiac[];
+
+    @CreatedAt
+    @Column({
+        field:'create_date',
+        allowNull:false,
+        type:DataType.DATE,
+        defaultValue:Sequelize.fn('now')
+        
+    })
+    createdAt: Date;
+
+    @UpdatedAt
+    @Column({
+        field:'update_date',
+        allowNull:false,
+        type:DataType.DATE,
+        defaultValue:Sequelize.fn('now')
+        
+    })
+    updatedAt: Date;
 
 
 }

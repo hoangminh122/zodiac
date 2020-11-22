@@ -1,6 +1,8 @@
 import { Sequelize } from "sequelize-typescript";
 import { DayOfZodiac } from "src/entities/DayOfZodiac";
+import { DetailZodiacs } from "src/entities/DetailZodiac";
 import { MonthOfZodiac } from "src/entities/MonthOfZodiacs";
+import { Settings } from "src/entities/Settings";
 import { Zodiacs } from "src/entities/zodiac";
 import { databaseConfig } from "src/shared/config/interfaces/database";
 
@@ -22,9 +24,9 @@ export const databaseProvider = {
         config = databaseConfig.development;
     }
 
-    const sequelize = new Sequelize({...config });
-    sequelize.addModels([Zodiacs,MonthOfZodiac,DayOfZodiac]);
-    await sequelize.sync({ force: true });
+    const sequelize = new Sequelize({ ...config });
+    sequelize.addModels([DetailZodiacs, Zodiacs, MonthOfZodiac, DayOfZodiac, Settings]);
+    await sequelize.sync({ force: false });
     return sequelize;
   },
 };

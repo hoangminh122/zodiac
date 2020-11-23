@@ -23,4 +23,12 @@ export class ZodiacService {
             }
         })
     }
+
+    async findZodiacByName(name) {
+        return this.zodiacModel.findOne({
+            where: {
+                code:name
+            }
+        })
+    }
 }

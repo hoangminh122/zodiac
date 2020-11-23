@@ -26,7 +26,7 @@ export const databaseProvider = {
 
     const sequelize = new Sequelize({ ...config });
     sequelize.addModels([DetailZodiacs, Zodiacs, MonthOfZodiac, DayOfZodiac, Settings]);
-    await sequelize.sync({ force: false });
+    await sequelize.sync({ force: true });
     return sequelize;
   },
 };

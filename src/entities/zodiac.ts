@@ -6,7 +6,11 @@ import { DetailZodiacs } from "./DetailZodiac"
 
 
 @Table({
-    tableName: 'zodiacs'
+    tableName: 'zodiacs',
+    indexes:[{
+        unique:true,
+        fields:['code']
+    }]
 })
 export class Zodiacs extends Model<Zodiacs> {
 
@@ -51,6 +55,13 @@ export class Zodiacs extends Model<Zodiacs> {
         type: DataType.STRING
     })
     weakness: string;
+
+    @Column({
+        field:'code',
+      allowNull:false,
+        type: DataType.STRING(20)
+    })
+    code: string;
 
     @Column({
         type: DataType.STRING

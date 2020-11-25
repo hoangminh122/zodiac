@@ -21,4 +21,22 @@ export class ZodiacController {
         return this.zodiacService.findZodiacById(id);
     }
 
+    @Get('/get-infor-zodiac/:name')
+    @ApiOperation({ summary: 'Find By Name' })
+    getZodiacByName(@Param('name') name: string) {
+        return this.zodiacService.findZodiacByName(name);
+    }
+
+    @Get('/get-name-zodiac/:dateOfBirth')
+    @ApiOperation({ summary: 'GetNameZodiac' })
+    getNameZodiac(@Param('dateOfBirth') date: Date) {
+        return this.zodiacService.getNameZodiac(date);
+    }
+
+    @Get('/get-infor-nomal-zodiac/:dateOfBirth')
+    @ApiOperation({ summary: 'GetNameZodiac' })
+    async getInforNomalZodiac(@Param('dateOfBirth') date: Date) {
+        return await this.zodiacService.getInforNomalZodiac(date);
+    }
+
 }

@@ -30,8 +30,7 @@ export class ZodiacController {
     @Get('/get-name-zodiac/:dateOfBirth')
     @ApiOperation({ summary: 'GetNameZodiac' })
     getNameZodiac(@Param('dateOfBirth') date: Date) {
-        console.log(date);
-       // return this.zodiacService.findZodiacByName(name);
+        return this.zodiacService.getNameZodiac(date);
     }
 
 }

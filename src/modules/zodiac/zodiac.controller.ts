@@ -33,4 +33,10 @@ export class ZodiacController {
         return this.zodiacService.getNameZodiac(date);
     }
 
+    @Get('/get-infor-nomal-zodiac/:dateOfBirth')
+    @ApiOperation({ summary: 'GetNameZodiac' })
+    async getInforNomalZodiac(@Param('dateOfBirth') date: Date) {
+        return await this.zodiacService.getInforNomalZodiac(date);
+    }
+
 }

@@ -27,7 +27,7 @@ export class ZodiacService {
     }
 
     async findZodiacByName(name) {
-        return this.zodiacModel.findOne({
+        return await this.zodiacModel.findOne({
             where: {
                 code: name
             }
@@ -41,5 +41,11 @@ export class ZodiacService {
         let day = dateFormat.getDate() || 0;
         let month = dateFormat.getMonth() + 1 || 0;
         return nameZodiac(day, month) || '';
+    }
+    async getInforNomalZodiac(date) {
+        //2020-11-25T08:58:31.110Z
+        let name = this.getNameZodiac(date) || '';
+        console.log(await this.findZodiacByName(name))
+        return await this.findZodiacByName(name) || '';
     }
 }
